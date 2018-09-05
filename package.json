@@ -1,0 +1,41 @@
+{
+  "author": {
+    "name": "lulin",
+    "email": "lulin666000@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/fegg/gulp-ng-tpl-cache/issues"
+  },
+  "dependencies": {
+    "event-stream": "^3.1.7",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-footer": "^1.0.5",
+    "gulp-header": "^1.8.8",
+    "gulp-util": "^3.0.1",
+    "js-string-escape": "^1.0.1",
+    "lodash": "^3.7.0",
+    "path": "^0.4.9"
+  },
+  "deprecated": false,
+  "description": "Build all of your angular templates in just one js file using $templateCache provider",
+  "homepage": "https://github.com/fegg/gulp-ng-tpl-cache",
+  "keywords": [
+    "gulpplugin",
+    "gulp",
+    "angular",
+    "angularjs",
+    "ng",
+    "html2js",
+    "templatecache"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "gulp-ng-tpl-cache",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fegg/gulp-ng-tpl-cache.git"
+  },
+  "scripts": { },
+  "version": "0.0.1"
+}
