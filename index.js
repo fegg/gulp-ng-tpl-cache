@@ -40,12 +40,28 @@ function templateCache(options) {
 }
 
 module.exports = function(options, filename) {
+  /**
+   * 代码执行的模式
+   * run: 直接加载执行
+   * service: 注册为一个服务，可以自己注入执行
+   */
+  var execMode = {
+    run: {
+      header: 'angular.module("<%= module %>"<%= standalone %>).run(["$templateCache", function($templateCache) {',
+      footer: '}]);'
+    },
+    service: {
+      header: 'angular.module("<%= module %>"<%= standalone %>).service(["$templateCache", function($templateCache) {this.init=function(){',
+      footer: '}}]);'
+    }
+  };
+
   var defaults = {
     standalone: true,
     module: 'templates',
     filename: 'templates.min.js',
-    header: 'angular.module("<%= module %>"<%= standalone %>).run(["$templateCache", function($templateCache) {',
-    footer: '}]);'
+    header: execMode.run.header,
+    footer: execMode.run.footer
   };
 
   if(_.isUndefined(options)) {
@@ -54,13 +70,18 @@ module.exports = function(options, filename) {
     options = {
       module: options
     };
-  }
+  } 
 
   if(!_.isUndefined(filename)) {
     options.filename = filename;
   }
 
   options = _.defaults(options, defaults);
+
+  if(options.execMode === 'service') {
+    options.header = execMode.service.header;
+    options.footer = execMode.service.footer; 
+  }
 
   return es.pipeline(
     templateCache(options),
