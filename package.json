@@ -37,5 +37,5 @@
     "url": "git+https://github.com/fegg/gulp-ng-tpl-cache.git"
   },
   "scripts": { },
-  "version": "0.0.2"
+  "version": "0.0.3"
 }

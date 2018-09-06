@@ -51,7 +51,9 @@ module.exports = function(options, filename) {
       footer: '}]);'
     },
     service: {
-      header: 'angular.module("<%= module %>"<%= standalone %>).service(["$templateCache", function($templateCache) {this.init=function(){',
+      header: function(serviceName) {
+        return 'angular.module("<%= module %>"<%= standalone %>).service("' + serviceName + '", ["$templateCache", function($templateCache) {this.init=function(){';
+      },
       footer: '}}]);'
     }
   };
@@ -79,7 +81,11 @@ module.exports = function(options, filename) {
   options = _.defaults(options, defaults);
 
   if(options.execMode === 'service') {
-    options.header = execMode.service.header;
+    var serviceName = 'templateCache';
+    if(!_.isUndefined(options.serviceName)) {
+      serviceName = options.serviceName;
+    }
+    options.header = execMode.service.header(serviceName);
     options.footer = execMode.service.footer; 
   }
 
